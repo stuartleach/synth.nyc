@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import * as Tone from 'tone';
 import {useSynthContext} from "./SynthContext";
 
-type Instrument = /*'kick' | 'snare' | 'hihat' |*/ 'synthKick' | 'synthSnare' | 'synthHihat';
+// type Instrument = /*'kick' | 'snare' | 'hihat' |*/ 'synthKick' | 'synthSnare' | 'synthHihat';
+type Instrument = 'synthOne' | 'synthTwo' | 'synthThree' | 'synthFour' | 'synthFive' | 'synthSix' | 'synthSeven' | 'synthEight';
 type Pattern = {
     [key in Instrument]: boolean[];
 };
@@ -28,9 +29,14 @@ export const Sequencer: React.FC = () => {
     };*/
 
     const synthDrums = {
-        synthKick: new Tone.MembraneSynth().toDestination(),
-        synthSnare: new Tone.NoiseSynth().toDestination(),
-        synthHihat: new Tone.NoiseSynth().toDestination(),
+        synthOne: new Tone.MembraneSynth().toDestination(),
+        synthTwo: new Tone.NoiseSynth().toDestination(),
+        synthThree: new Tone.NoiseSynth().toDestination(),
+        synthFour: new Tone.NoiseSynth().toDestination(),
+        synthFive: new Tone.NoiseSynth().toDestination(),
+        synthSix: new Tone.NoiseSynth().toDestination(),
+        synthSeven: new Tone.NoiseSynth().toDestination(),
+        synthEight: new Tone.NoiseSynth().toDestination(),
     }
 
     // const drumPlayers = new Tone.Players(drumSamples).toDestination();
@@ -40,9 +46,14 @@ export const Sequencer: React.FC = () => {
         /*kick: new Array(16).fill(false),*/
         /*snare: new Array(16).fill(false),*/
         /*hihat: new Array(16).fill(false),*/
-        synthKick: new Array(16).fill(false),
-        synthSnare: new Array(16).fill(false),
-        synthHihat: new Array(16).fill(false),
+        synthOne: new Array(16).fill(false),
+        synthTwo: new Array(16).fill(false),
+        synthThree: new Array(16).fill(false),
+        synthFour: new Array(16).fill(false),
+        synthFive: new Array(16).fill(false),
+        synthSix: new Array(16).fill(false),
+        synthSeven: new Array(16).fill(false),
+        synthEight: new Array(16).fill(false),
     };
     const [pattern, setPattern] = useState(initialPattern);
 
