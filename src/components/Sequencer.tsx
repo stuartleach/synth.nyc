@@ -31,11 +31,11 @@ export const Sequencer: React.FC = () => {
     const synthDrums = {
         synthOne: new Tone.MembraneSynth().toDestination(),
         synthTwo: new Tone.NoiseSynth().toDestination(),
-        synthThree: new Tone.NoiseSynth().toDestination(),
-        synthFour: new Tone.NoiseSynth().toDestination(),
-        synthFive: new Tone.NoiseSynth().toDestination(),
+        synthThree: new Tone.FMSynth().toDestination(),
+        synthFour: new Tone.MembraneSynth().toDestination(),
+        synthFive: new Tone.DuoSynth().toDestination(),
         synthSix: new Tone.NoiseSynth().toDestination(),
-        synthSeven: new Tone.NoiseSynth().toDestination(),
+        synthSeven: new Tone.AMSynth().toDestination(),
         synthEight: new Tone.NoiseSynth().toDestination(),
     }
 
@@ -83,6 +83,8 @@ export const Sequencer: React.FC = () => {
         '16n'
     );
 
+
+
     if (isPlaying) {
         console.log("playing...")
         sequence.start(0);
@@ -102,22 +104,22 @@ export const Sequencer: React.FC = () => {
     return (
         <div className="sequencer">
             <button
-                className={`play-button ${isPlaying ? 'active' : ''}`}
+                className={`play-button ${isPlaying ? 'active' : ''} text-stone-200 text-9xl font-extrabold uppercase font-display`}
                 onClick={() => {Tone.Transport.start(); setIsPlaying(!isPlaying)}}
             >
                 {isPlaying ? 'Stop' : 'Play'}
             </button>
-            <div className="pattern bg-red-500">
+            <div className="pattern">
                 {Object.keys(pattern).map((instrument: string) => (
-                    <div key={instrument} className="instrument-row bg-pink-500 m-2 text-3xl">
+                    <div key={instrument} className="instrument-row m-2 text-3xl">
                         {pattern[instrument as Instrument].map((isActive: boolean, step: number) => (
                             <button
                                 key={step}
-                                className={`step ${isActive ? 'active' : ''} ${
-                                    currentStep === step ? 'current' : ''
-                                } bg-amber-300 p-3`}
+                                className={`step ${isActive ? 'active bg-blue-300' : 'bg-black'} ${
+                                    currentStep === step ? 'current bg-red-300' : ''
+                                }  ${isActive && currentStep === step ? 'bg-green-300': ''} p-5 m-2 rounded-full`}
                                 onClick={() => toggleStep(instrument as Instrument, step)}
-                            >{isActive ? "🛢️" : "🥁"}</button>
+                            >{isActive ? " " : " "}</button>
                         ))}
                     </div>
                 ))}
