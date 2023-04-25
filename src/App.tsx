@@ -1,26 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SynthDashboard from "./components/SynthDashboard";
+import * as Tone from "tone";
+
+
+function EmptyTags(): JSX.Element {
+        return (<></>)
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [playing, setPlaying] = React.useState(false);
+
+    const initialized = Tone.getContext() || null
+
+
+    const startTone = () => {
+        setPlaying(!playing)
+        return Tone.start()
+    }
+
+    useEffect(() => {
+    }, [playing])
+
+    return (
+        <div className="App">
+            <button onClick={() => startTone()}>{playing ? "Pause" : "Play"} </button>
+            <div className="App-body">
+                {initialized ?
+                    <SynthDashboard/> : <EmptyTags />}
+            </div>
+        </div>
+    );
 }
 
 export default App;
