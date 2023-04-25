@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 import SynthDashboard from "./components/SynthDashboard";
 import * as Tone from "tone";
@@ -25,8 +25,7 @@ function App() {
     }, [playing])
 
     return (
-        <div className="App">
-            <button onClick={() => startTone()}>{playing ? "Pause" : "Play"} </button>
+        <div className="App" >
             <div className="App-body">
                 {initialized ?
                     <SynthDashboard/> : <EmptyTags />}

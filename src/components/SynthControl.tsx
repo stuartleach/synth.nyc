@@ -15,14 +15,11 @@ export const SynthControl: React.FC<SynthControlProps> = ({synthType}) => {
         | Tone.AMSynth
         | Tone.DuoSynth
         | Tone.MembraneSynth
-        // | Tone.PolySynth<Tone.Synth>
         | null;
     const [volume, setVolume] = useState<number>(0);
     const [detune, setDetune] = useState<number>(0);
 
     useEffect(() => {
-
-
         if (synth) {
             synth.connect(Tone.Master); // deprecated; fix eventually.
         }
@@ -34,9 +31,7 @@ export const SynthControl: React.FC<SynthControlProps> = ({synthType}) => {
 
     useEffect(() => {
         if (!synth) return;
-
         synth.toDestination();
-
         return () => {
             synth.disconnect();
         };

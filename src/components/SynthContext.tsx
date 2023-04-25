@@ -20,8 +20,6 @@ const defaultSynthInstances: SynthInstances = {
     AMSynth: null,
     DuoSynth: null,
     MembraneSynth: null,
-    // PolySynth: null,
-    // Implementation6: null,
 };
 
 const SynthContext = createContext<SynthInstances>(defaultSynthInstances);
