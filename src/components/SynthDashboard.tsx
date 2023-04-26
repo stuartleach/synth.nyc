@@ -4,38 +4,37 @@ import {SynthVisualization} from './SynthVisualization';
 import {SynthContextProvider, useSynthContext} from "./SynthContext";
 import {WorkstationSynthControl} from './WorkstationSynthControl'
 // import {PolySynthControl} from './PolySynthControl.tsx.txt'
-import {Synth} from "tone";
 import * as Tone from "tone"
 import {Sequencer} from "./Sequencer";
+import {TodoList} from "./TodoList";
 
 
 const SynthDashboard: React.FC = () => {
     const [rerender, startRerender] = useState(0)
-    const startTone = () => {
+    const startTone = async () => {
         startRerender((rerender) => rerender + 1)
-        Tone.start().then(() => {
+        await Tone.start().then(() => {
             console.log("tone started")
         })
-
     }
 
     useEffect(() => {
-        console.log(rerender, "count")
-        // startTone()
-        return () => {
-            Tone.disconnect(Tone.Destination)
-        }
+        console.log(rerender, "count");
+        (async () => {
+            await startTone()
+        })()
+
     }, [])
 
 
     return (
         <>
-            <button onClick={startTone}>Start Tone</button>
             <SynthContextProvider>
-                <div onClick={startTone}
-                     className="min-h-screen bg-gray-700 py-3 flex flex-col justify-center sm:py-12">
+                <div onClick={async () => {
+                    await startTone()
+                }} className="min-h-screen bg-gray-700 py-3 flex flex-col justify-center sm:py-12">
                     <div className="relative py-3 sm:max-w-5xl mx-auto center ">
-                        {/*<h1 className="text-4xl font-bold text-center mb-8">Poly Synth Dashboard</h1>*/}
+
                         <Sequencer/>
                         <div className="synth-controls grid grid-cols-3 gap-1 sm:grid-cols-2">
                             {
@@ -52,10 +51,13 @@ const SynthDashboard: React.FC = () => {
                                 })
                             }
                         </div>
+                        <div className={`todoList justify-end align-baseline`}>
+                            <TodoList/>
+                        </div>
                     </div>
                 </div>
             </SynthContextProvider></>
-    );
+    )
 };
 
 export default SynthDashboard;
