@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import * as Tone from 'tone';
 import {useSynthContext} from "./SynthContext";
 
-// type Instrument = /*'kick' | 'snare' | 'hihat' |*/ 'synthKick' | 'synthSnare' | 'synthHihat';
+// Types and Interfaces
 type Instrument =
     'synthOne'
     | 'synthTwo'
@@ -12,6 +12,7 @@ type Instrument =
     | 'synthSix'
     | 'synthSeven'
     | 'synthEight';
+
 type Pattern = {
     [key in Instrument]: boolean[];
 };
@@ -38,6 +39,7 @@ interface MixerControlsProps {
     OnFX2: () => void;
 }
 
+// Components
 export const MixerControls: React.FC<MixerControlsProps> = ({
                                                                 mute,
                                                                 volume,
@@ -309,7 +311,7 @@ export const Sequencer: React.FC = () => {
                     <div key={instrument} className="instrument-row m-2 text-3xl">
                         {/*Create div to move instrument name to left of row*/}
                         {/*<div className="instrument-name justify-start">{instrument}</div>*/}
-                        <MixerControls
+                       {/* <MixerControls
                             mute={mixerSettings[instrument as Instrument].mute}
                             volume={mixerSettings[instrument as Instrument].volume}
                             onMute={() => handleMute(instrument as Instrument)}
@@ -328,7 +330,7 @@ export const Sequencer: React.FC = () => {
                             FX2={false}
                             FX1Volume={0}
                             FX2Volume={0}
-                        />
+                        />*/}
                         {pattern[instrument as Instrument].map((isActive: boolean, step: number) => (
                             <button
                                 key={step}

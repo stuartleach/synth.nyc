@@ -3,10 +3,11 @@ import logo from './logo.png';
 import './App.css';
 import SynthDashboard from "./components/SynthDashboard";
 import * as Tone from "tone";
-
+import {ThreeDimensions} from "./components/ThreeD/ThreeDimensions";
+import SphereGrid from "./components/ThreeD/SphereGrid";
 
 function EmptyTags(): JSX.Element {
-        return (<></>)
+    return (<></>)
 }
 
 function App() {
@@ -14,7 +15,6 @@ function App() {
     const [playing, setPlaying] = React.useState(false);
 
     const initialized = Tone.getContext() || null
-
 
     const startTone = () => {
         setPlaying(!playing)
@@ -25,11 +25,15 @@ function App() {
     }, [playing])
 
     return (
-        <div className="App" >
-            <div className="App-body">
+        <div className="App">
+            {/*<ThreeDimensions/>*/}
+            <div className="canvas-container" style={{width: '100vw', height: '100vh'}}>
+
+                <SphereGrid/></div>
+            {/*<div className="App-body">
                 {initialized ?
                     <SynthDashboard/> : <EmptyTags />}
-            </div>
+            </div>*/}
         </div>
     );
 }

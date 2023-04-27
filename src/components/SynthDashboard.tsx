@@ -7,6 +7,7 @@ import {WorkstationSynthControl} from './WorkstationSynthControl'
 import * as Tone from "tone"
 import {Sequencer} from "./Sequencer";
 import {TodoList} from "./TodoList";
+import {ThreeDimensions} from "./ThreeD/ThreeDimensions";
 
 
 const SynthDashboard: React.FC = () => {
@@ -35,7 +36,7 @@ const SynthDashboard: React.FC = () => {
                 }} className="min-h-screen bg-gray-700 py-3 flex flex-col justify-center sm:py-12">
                     <div className="relative py-3 sm:max-w-5xl mx-auto center ">
 
-                        <Sequencer/>
+                        <Sequencer />
                         <div className="synth-controls grid grid-cols-3 gap-1 sm:grid-cols-2">
                             {
                                 Object.keys(useSynthContext()).map((synthKind: string): JSX.Element => {
