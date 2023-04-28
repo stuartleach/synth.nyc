@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {Sphere, Box, RoundedBox, Ring, Cloud} from '@react-three/drei';
+import {Sphere, Box, RoundedBox, Ring, Cloud, Stars} from '@react-three/drei';
 import * as THREE from 'three';
 import * as Tone from 'tone';
 
@@ -39,7 +39,7 @@ export const GridRoundedBox = ({position, color, onClick}) => {
     return (
         <RoundedBox
             ref={meshRef}
-            args={[1, 1, 1, 16, 0.1]}
+            args={[0.75, 0.75, 0.75]}
             position={position}
             onClick={() => onClick(meshRef)}
         >
@@ -72,7 +72,6 @@ export const GridSphere = ({position, color, onClick}) => {
     const meshRef = useRef();
 
 
-
     return (
         <Sphere
             ref={meshRef}
@@ -85,3 +84,18 @@ export const GridSphere = ({position, color, onClick}) => {
         </Sphere>
     );
 };
+
+export const Star = ({position, color, onClick}) => {
+    const meshRef = useRef();
+
+    return (
+        <Stars
+            ref={meshRef}
+            args={[0.5, 16, 16]}
+            position={position}
+            onClick={() => onClick(meshRef)}
+        >
+            <meshStandardMaterial color={color}/>
+        </Stars>
+    );
+}
