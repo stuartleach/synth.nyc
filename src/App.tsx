@@ -4,7 +4,7 @@ import './App.css';
 import SynthDashboard from "./components/SynthDashboard";
 import * as Tone from "tone";
 import {ThreeDimensions} from "./components/ThreeD/ThreeDimensions";
-import SphereGrid from "./components/ThreeD/SphereGrid";
+import ShapeGrid from "./components/ThreeD/ShapeGrid";
 
 function EmptyTags(): JSX.Element {
     return (<></>)
@@ -29,7 +29,7 @@ function App() {
             {/*<ThreeDimensions/>*/}
             <div className="canvas-container" style={{width: '100vw', height: '100vh'}}>
 
-                <SphereGrid/></div>
+                <ShapeGrid/></div>
             {/*<div className="App-body">
                 {initialized ?
                     <SynthDashboard/> : <EmptyTags />}

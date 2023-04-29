@@ -32,7 +32,7 @@ const Skybox = () => {
     const material = new MeshBasicMaterial({
         map: texture,
         side: THREE.BackSide,
-        depthWrite: false,
+        depthWrite: true,
     });
 
     const geometry = new SphereGeometry(500, 64, 64);
@@ -42,7 +42,7 @@ const Skybox = () => {
     return null;
 };
 
-export const SphereGrid = () => {
+export const ShapeGrid = () => {
     const [spheres, setSpheres] = useState(() => {
         const initialSpheres = [];
         const gridSizeX = 4;
@@ -104,7 +104,7 @@ export const SphereGrid = () => {
 
 
     const handleClick = (sphereRef, note) => {
-        const currentColor = sphereRef.current.material.color
+        const currentColor = sphereRef.current.material.color.clone();
         console.log(currentColor);
         // play a new tone
         const synth = new Tone.Synth().toDestination();
@@ -143,7 +143,7 @@ export const SphereGrid = () => {
             if (elapsedTime < duration) {
                 requestAnimationFrame(animateColorFadeAndScale);
             } else {
-                sphereRef.current.material.color.set(`${endColor.getHex()}`);
+                sphereRef.current.material.color.copy(endColor);
                 sphereRef.current.scale.set(startScale, startScale, startScale);
             }
         };
@@ -160,7 +160,7 @@ export const SphereGrid = () => {
             {/*<Background/>*/}
             <pointLight position={[1, 5, 5]}/>
             <pointLight position={[10, 1, 5]}/>
-            <ambientLight />
+            <ambientLight/>
 
             {new Array(20).fill().map(() => (
                 <Star
@@ -184,4 +184,4 @@ export const SphereGrid = () => {
     );
 };
 
-export default SphereGrid;
+export default ShapeGrid;

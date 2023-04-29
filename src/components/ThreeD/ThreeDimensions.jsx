@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import SphereGrid from "./SphereGrid";
+import ShapeGrid from "./ShapeGrid";
 
 
 export const ThreeDimensions = (props) => {
